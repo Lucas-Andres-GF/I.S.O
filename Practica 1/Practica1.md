@@ -5,14 +5,14 @@
 
 GNU/Linux
 
-Caracteristicas de un sofware GNU. 
+#### Caracteristicas de un sofware GNU. 
 
 - Libertad de usar el programa con cualquier propósito
 - Libertad de estudiar su funcionamiento
 - Libertad para distribuir sus copias
 - Libertad para mejorar los programas
 
-Caracteristicas GNU/Linux.
+#### Caracteristicas GNU/Linux.
 
 - Linux, no es un SO, sino que es un nucleo (Kernel), que junto al sistema GNU, formaron el SO GNU/Linux.  
 
