@@ -93,6 +93,8 @@ El término fue sugerido por Richard Stallman en la década de 1980, en respuest
 
 Una  distribución  Linux  o  distribución  GNU/Linux  (abreviada  con  frecuencia  distro)  es  un  conjunto  de  aplicaciones reunidas que permiten brindar mejoras para instalar fácilmente un sistema operativo basado en  GNU/Linux. Son "sabores" de GNU/Linux que, en general, se diferencian entre sí por las herramientas para  configuración  y  sistemas  de  administración  de  paquetes  de  software  para  instalar.  La  elección  de  una  distribución depende de las necesidades del usuario y de gustos personales.
 
+Una distribución es una customización de GNU/Linux formada por una versión de kernel y determinados programas con sus configuraciones.
+
 Distribuciones
 
 - Debian 
@@ -113,6 +115,21 @@ Diferencias básicas entre ellas
 ### b) *En qué se diferencia una distribución de otra?*
 
 - Existen varias diferencias entre las distribuciones, ya sea con que sentido son hechas, a que publico se dirige y su interfaz grafica. Tambien se diferencian los requisitos de hardware para el uso de cada distribución y sus "flavors".  
+
+Diferencias de una distribución a otra.
+Editores de texto:
+- vi
+- emacs
+- joe
+Herramientas de networking:
+- wireshark
+- tcpdump
+- Paquetes de oficina:
+- OpenOffice
+Iterface gráficas:
+- GNOME / CINNAMON
+- KDE
+- LXDE
 
 ### c) *¿Qué es Debian? Acceda al sitio 1 e indique cuáles son los objetivos del proyecto y una breve cronología del mismo.*
 
@@ -315,36 +332,152 @@ Estas se diferencian entre sí básicamente en la sintaxis de sus comandos y en 
 **N**     La función no está presente esta shell..
           
 ### d) *¿Dónde se ubican (path) los comandos propios y externos al Shell?*
-
+Los comandos propios se integran en los procesos de la propia Shell, no se corresponden a un archivo almacenado en disco.
+Los comandos externos se almacenan en /usr/bin 
 
 ### e) *¿Por qué considera que el Shell no es parte del Kernel de GNU/Linux?*
-
+El Shell no forma parte del kernel básico del SO; sino que el mismo “dialoga” con el kernel. 
 
 ### f) *¿Es posible definir un intérprete de comandos distinto para cada usuario? ¿Desde dónde se define? ¿Cualquier usuario puede realizar dicha tarea?*
+Dentro del archivo /etc/passwd (Accediendo cat /etc/passwd), se puede ver cual es el shell que cada usuario tiene asignada por defect.
+![](/images/WhatsApp%20Image%202022-09-17%20at%2012.11.56.jpeg)
 
 
 ## 6. Sistema de Archivos (File System):
 
 ### a) *¿Qué es?*
+Filesystem se traduce como “sistema de archivos”. Es la forma en que dentro de un sistema de cómputo se 
+organizan, se administran los archivos.
+
+Esa administración comprende: 
+- Métodos de acceso: cómo se acceden los datos contenidos en el archivo. 
+- Manejo de archivos: cómo actúan los mecanismos para almacenar, referenciar, compartir y proteger los archivos. 
+- Manejo de la memoria secundaria: Cómo se administra el espacio para los archivos en memoria secundaria. 
+- Mecanismos de integridad: con qué métodos se garantiza la incorruptibilidad del archivo.
+
+Los  sistemas  de  archivos estructuran la información que luego será representada ya sea textual o gráficamente utilizando un gestor de archivos (-por ejemplo Midnight Commander, Nautilus, Konqueror, etc.-).
+
+tiene directorios que asocian nombres de archivos con archivos, usualmente conectando el nombre de archivo a un índice en una tabla de asignación de archivos de  algún  tipo,  como  los  inodos  de  los  sistemas  Unix.
+
 
 ### b) *Mencione sistemas de archivos soportados por GNU/Linux.*
+File System soportados por GNU/Linux:
+- ext2 
+- ext3 
+- ReiserFS 
+- XFS 
+- JFS 
+- UFS 
+- ISO9660 
+- FAT 
+- FAT32 
+- NTFS
 
 ### c) *¿Es posible visualizar particiones del tipo FAT y NTFS en GNU/Linux?*
+Si, es posible. 
 
 ### d) *¿Cuál es la estructura básica de los File System en GNU/Linux? Mencione los directorios más importantes e indique qué tipo de información se encuentra en ellos. ¿A qué hace referencia la sigla FHS?*
+En el momento de instalación GNU/Linux crea una estructura de directorios básica, definida por la Filesystem Hierarchy Standard Group llamada Filesystem Hierarchy Standard (FHS).Todos los archivos y directorios aparecen bajo el directorio raíz / . 
+
+directorios definidos por FHS: 
+ 
+Bin  Comandos binarios esenciales 
+Boot  Archivos estáticos del cargador de arranque 
+Dev  Archivos de dispositivos 
+Etc  Configuración del sistema especifica 
+Lib  Librerías esenciales compartidas y módulos del Kernel  
+Media  Punto de montaje para dispositivos removibles 
+Mnt  Punto de montaje para montar fliesystems temporarios 
+Opt  Paquetes de sofware de aplicación agregados  
+Sbin  programas  binarios esenciales del sistema 
+Srv  Datos para servicios provistos por el sistema 
+Tmp  Archivos temporarios 
+Usr  Estructura secundaria 
+Var  Datos variables 
+Home  Directorio base de usuarios 
+Root  directorio home del root 
+Proc  usado en lugar del/dev/kmen – soporta los procesos
+
+/bin:  bin  es  la  abreviación  de  binaries,  o  ejecutables.  Es  donde  residen  la  mayoría  de  los  programas esenciales  del  sistema,  como  cp, ls  y mv.  Cuando  se usa la  orden cp, se  está ejecutando el programa /bin/cp. Si ejecutamos el comandos ls -F se verá que la mayoría de los ficheros de /bin tienen un asterisco añadido al final de sus nombres; esto indica que son archivos ejecutables. 
+ 
+/dev: Los archivos en /dev son conocidos como controladores de dispositivo (device drivers) son usados para acceder a los dispositivos del sistema y recursos, como discos duros, modems, memoria, etc; Por ejemplo, los archivos que comienzan su nombre con fd son controladores de disqueteras. fd0: es la primera  disquetera, fd1 la segunda.  
+ 
+/etc: contiene una serie de archivos de configuración del sistema. Estos incluyen /etc/passwd (la base de datos de usuarios), /etc/rc (scripts de inicialización del sistema), etc. 
+ 
+/sbin: se usa para almacenar programas esenciales del sistema, que usará el administrador del sistema. 
+ 
+/home: contiene los directorios "home" de los usuarios. Por ejemplo, /home/ISO2007 es el directorio del usuario ISO2007.  
+ 
+/lib: contiene las imágenes de las librerías compartidas. Estos archivos contienen código que compartirán muchos programas. En lugar de que cada programa contenga una copia propia de las rutinas compartidas, estas son guardadas en un lugar común, en /lib. Esto hace que los programas ejecutables sean menores y reduce el espacio usado en disco. 
+ 
+/proc: es un "sistema de ficheros virtual". Los ficheros que contiene realmente residen en memoria, no en un disco. Hacen referencia a varios procesos que corren en el sistema, y le permiten obtener información acerca de que programas y procesos están corriendo en un momento dado. 
+ 
+/tmp: Muchos programas  tienen la necesidad de generar cierta información temporal y guardarla en un fichero temporal. El lugar habitual para esos ficheros es en /tmp. 
+ 
+/usr: es un directorio muy importante. Contienen una serie de subdirectorios que contienen a su vez algunos de los más importantes y útiles programas y archivos de configuración usados en el sistema. 
 
 
+**Los directorios descritos arriba son esenciales para que el sistema esté operativo, pero la mayoría de las cosas  que  se  encuentran  en  /usr  son  opcionales  para  el  sistema.  De  cualquier  forma,  son  estas  cosas opcionales las que hacen que el sistema sea útil e interesante. Sin /usr, tendría un sistema aburrido, solo con programas como cp y ls. /usr contiene la mayoría de los paquetes grandes de programas y sus ficheros de configuración**
+
+/usr/X11R6: contiene el sistema XWindow si se ha instalado. El sistema X Window es un entorno gráfico grande y potente el cual proporciona un gran número de utilidades y programas gráficos, mostrados en "ventanas" en su pantalla. Este directorio contiene todos los ejecutables de XWindow, archivos de configuración y de soporte. 
+ 
+/usr/bin: Contiene la mayoría de los programas que no se encuentran en otras partes como /bin. 
+ 
+/usr/etc: Como /etc contiene diferentes archivos de configuración y programas del sistema, /usr/etc contiene  incluso  más  que  el  anterior.  En  general,  los  archivos  que  se  encuentran  aquí  no  son esenciales para el sistema, a diferencia de los que se encuentran en /etc, que si lo son. 
+ 
+/usr/include: contiene los archivos de cabecera para el compilador de C. Estos archivos (la mayoría de los cuales terminan en .h, de "header") declaran estructuras de datos, subrutinas y constantes usados en la escritura de programas en C. Los archivos que se encuentran en /usr/include/sys son generalmente usados en la programación de en Unix a nivel de sistema. Si se está familiarizado con el  lenguaje  de  programación  C,  aquí  encontrarán  los  ficheros  de  cabecera,  como  por  ejemplo stdio.h, el cual declara funciones como printf(). 
+ 
+/usr/lib: contiene las librerías equivalentes "stub" y "static" a los ficheros encontrados en /lib. Al compilar un programa, este es "enlazado" con las librerías que se encuentran en aquí, las cuales dirigen  al  programa  a  buscar  en  /lib  cuando  necesita  el  código  de  la  librería.  Además,  varios programas guardan archivos de configuración en /usr/lib
 ## 7. Particiones:
 
 ### *a) Definición. Tipos de particiones. Ventajas y Desventajas.*
+Una partición es el nombre que se le da a cada división presente en una sola unidad física de almacenamiento de datos. Tener varias particiones es como tener varios discos duros en un solo disco duro físico, cada uno con su sistema de archivos y funcionando de manera diferente.
+
+Tipos de particiones
+
+- Partición primaria: Son las divisiones primarias del disco que dependen de una tabla de particiones, y son las que detecta el ordenador al arrancar, por lo que es en ellas donde se instalan los sistemas operativos. Puede haber un máximo de cuatro, y prácticamente cualquier sistema operativo las detectará y asignará una unidad siempre y cuando utilicen un sistema de archivo compatible. Un disco duro completamente formateado contiene en realidad una partición primaria ocupando todo su espacio.
+
+- Partición extendida o secundaria: Fue ideada para poder tener más de cuatro particiones en un disco duro, aunque en ella no se puede instalar un sistema operativo. Esto quiere decir que sólo la podremos usar para almacenar datos. Sólo puede haber una de ellas, aunque dentro podremos hacer tantas otras particiones como queramos. Si utilizas esta partición, el disco sólo podrá tener tres primarias, siendo la extendida la que actúe como cuarta.
+
+- Partición lógica: Son las particiones que se hacen dentro de una partición extendida. Lo único que necesitarás es asignarle un tamaño, un tipo de sistema de archivos (FAT32, NTFS, ext2,...), y ya estará lista para ser utilizada. Funcionan como si fueran dispositivos independientes, y puedes utilizarla para almacenar cualqueir archivo.
+
+Ventajas
+- Instalar dos o más sistemas operativos
+- Mejor organización
+- Más seguridad
+- Copias de seguridad
+- Facilidad de reinstalación
+
+Desventajas
+- Innecesario para el usuario medio
+- Desorden en los volúmenes
+- Posibilidad de errores
+- Experiencia más lenta
 
 ### *b) ¿Cómo se identifican las particiones en GNU/Linux? (Considere discos IDE, SCSI y SATA).*
 
+las par
+
 ### *c) ¿Cuántas particiones son necesarias como mínimo para instalar GNU/Linux? Nómbrelas indicando tipo de partición, identificación, tipo de File System y punto de montaje.*
+Como minimo para instalar GNU/linux se necesitan 4 las particiones:
+|punto de montaje|tipo te particion|file system| 
+|---|---|---|
+|SO |Particion primaria | FAT16 |
+| / (raiz) | Particion primaria |ext4 (ext2,ext3)|
+| /boot | Particion primaria | ext4 (ext2,ext3)|
+| SWAP | Partición logica | área de intercambio|
+| /home | Partición primaria | ext4 (ext2,ext3) |
 
 ### *d) Ejemplifique diversos casos de particionamiento dependiendo del tipo de tarea que se deba realizar en su sistema operativo.*
 
 ### *e) ¿Qué tipo de software para particionar existe? Menciónelos y compare.*
+Sistema de particionamiento
+Esta aplicación es usada para crear, destruir, redimensionar, inspeccionar y copiar particiones, como también sistemas de archivos. Esto es útil para crear espacio para nuevos sistemas operativos, para reorganizar el uso del disco y para crear imágenes de un disco en una partición.
+
+Existen 2 tipos:
+- Destructivos: permiten crear y eliminar particiones. (fdisk)
+- No destructivo: permiten crear, eliminar y modificar particiones.
+(fips, gparted) ← generalmente las distribuciones permiten hacerlo desde la interfaz de instalación.
 
 ## 8. Arranque (bootstrap) de un Sistema Operativo:
 
