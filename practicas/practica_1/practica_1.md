@@ -456,20 +456,30 @@ Desventajas
 
 ### *b) ¿Cómo se identifican las particiones en GNU/Linux? (Considere discos IDE, SCSI y SATA).*
 
-las par
+Para todos los tipos de discos si termina en 1,2,3, es primaria, 4 extendida, de 5 para adelante lógica,
+- A = primer disco. 
+- b = segundo disco.
+- ....
+Ejemplos:
+- Hda1 es la primer partición primaria del primer disco IDE.
+- Sdb 5 es la primer partición lógica del segundo disco SCSI o SATA.
+
 
 ### *c) ¿Cuántas particiones son necesarias como mínimo para instalar GNU/Linux? Nómbrelas indicando tipo de partición, identificación, tipo de File System y punto de montaje.*
-Como minimo para instalar GNU/linux se necesitan 4 las particiones:
-|punto de montaje|tipo te particion|file system| 
+Para instalar GNU/linux, basta con 1 particion. 
+
+Se aconsejan 4 particiones:
+|Punto de montaje|Tipo te particion|File system| 
 |---|---|---|
-|SO |Particion primaria | FAT16 |
 | / (raiz) | Particion primaria |ext4 (ext2,ext3)|
 | /boot | Particion primaria | ext4 (ext2,ext3)|
 | SWAP | Partición logica | área de intercambio|
 | /home | Partición primaria | ext4 (ext2,ext3) |
 
 ### *d) Ejemplifique diversos casos de particionamiento dependiendo del tipo de tarea que se deba realizar en su sistema operativo.*
+Un ejemplo de particionado: 
 
+Se podría particionar los diversos puntos de montaje /, /home en disversos discos de forma que cuando un usuario cambie de carpeta acceda al otro disco, seria una forma de proteger los datos, otra opción seria poner Windows en una partición, y en otra poner una distribución de Linux.Cada una de las particiones de Linux debe tener un sistema de archivos compatible,ejemplo “extended”(2,3 o 4).
 ### *e) ¿Qué tipo de software para particionar existe? Menciónelos y compare.*
 Sistema de particionamiento
 Esta aplicación es usada para crear, destruir, redimensionar, inspeccionar y copiar particiones, como también sistemas de archivos. Esto es útil para crear espacio para nuevos sistemas operativos, para reorganizar el uso del disco y para crear imágenes de un disco en una partición.
@@ -479,25 +489,100 @@ Existen 2 tipos:
 - No destructivo: permiten crear, eliminar y modificar particiones.
 (fips, gparted) ← generalmente las distribuciones permiten hacerlo desde la interfaz de instalación.
 
+Existe Gparted que es de Gnome, DiskPart y administrador de discos, o magic partitioner.
+
 ## 8. Arranque (bootstrap) de un Sistema Operativo:
 
 ### *a) ¿Qué es el BIOS? ¿Qué tarea realiza?*
+El BIOS (Basic Input Output System) es un software de bajo nivel que se halla en el motherboard. 
+
+Cuando se arranca la computadora el BIOS realiza el POST (Power-on self-test), que incluye rutinas que, entre otras actividades, fijan valores de las señales internas, y ejecutan test internos (RAM, el teclado, y otros dispositivos a través de los buses ISA y PCI).
+
+Luego se lee el primer sector del disco de inicio (seleccionado de entre un conjunto de posibles dispositivos de arranque), 
+llamado MBR (master boot record).
 
 ### *b) ¿Qué es UEFI? ¿Cuál es su función?*
+Las siglas UEFI vienen de Unified Extensible Firmware Interface (es decir, interfaz de firmware extensible unificada). Esta interfaz especial es, por así decirlo, como un sistema operativo en miniatura que se encarga de arrancar la mainboard o placa base del ordenador y los componentes de hardware relacionados con ella. De este modo, la interfaz es la responsable de que se cargue un gestor de arranque (bootloader) concreto en la memoria principal, que será el que iniciará las acciones rutinarias de arranque.
 
-### *c) ¿Qué es el MBR? ¿Que es el MBC?*
+Para poder usar la interfaz UEFI, el ordenador necesita disponer de un firmware especial en la placa base. Al encender el ordenador, el firmware utiliza la interfaz UEFI como una capa o layer operativa que actúa de intermediaria entre el mismo firmware y el sistema operativo. Para que el modo UEFI se pueda iniciar antes de que el ordenador en sí haya arrancado realmente, se implementa de forma permanente en la placa base, en un chip de memoria. Así, como parte integral del firmware de la placa base, la programación UEFI se mantiene incluso cuando aún no circula la electricidad.
+
+UEFI suele considerarse un sucesor directo de BIOS. Sin embargo, la especificación UEFI no establece cómo programar un firmware totalmente, sino que se limita a describir la interfaz entre el firmware y el sistema operativo.Más bien se trata de una extensión o modificación actualizada que permite arrancar ordenadores modernos con ayuda de una interfaz operativa y utilizando nuevos mecanismos y funciones.
+
+### *c) ¿Qué es el MBR?* 
+MBR (master boot record - Registro de arranque principal) es el primer sector de un dispositivo de almacenamiento de datos, el cual puede contener un código de arranque denominado MBC y una marca de 2 bytes que indica su presencia o puede solamente contener la tabla de particiones.
+Se utiliza: 
+-Para el arranque del sistema operativo con bootstrap(si fuese el primary  master disk).
+-Para almacenar la tabla de particiones.
+-Para la identificacion del disco.
+
+### *¿Que es el MBC?*
+El MBC (Master Boot Code) contiene el bootloader (gestor de arranque), es decir un pequeño programa encargado de preparar todo lo que necesita un S.O. Para funcionar , en general los bootloaders son multietapas , es decir , se componen por la ejecucion de varios 	pequeños programas en cadena , hasta que el ultimo inicia el sistema operativo.
+
+El código del MBC de **Windows**, por ejemplo, busca en la tabla de particiones cual es la primer partición primaria con el flag de “booteo” activo y transfiere el control al código que se encuentra al comienzo de dicha partición: el PBR (partition boot record).
+
+En el caso del sistema operativo **Linux**, se puede optar por distintos gestores de arranque, por ejemplo, LILO (Linux Loader),GRUB (Grand Unified Bootloader) o GAG (Gestor de arranque Gráfico).
 
 ### *d) ¿A qué hacen referencia las siglas GPT? ¿Qué sustituye? Indique cuál es su formato.*
+El sistema GPT (GUID Partition table) se introduce para solucionar algunas limitaciones del MBR, tales como la cantidad de particiones y capacidad máxima del dispositivo particionado, el GPT especifica la ubicación y formato de la tabla de particiones en un disco duro.Es parte de EFI. Puede verse como una sustitución del MBR como era pensado en laBIOS.
 
-### *e) ¿Cuál es la funcionalidad de un “Gestor de Arranque”? ¿Qué tipos existen? ¿Dónde se instalan? Cite gestores de arranque conocidos.*
+Formato:
+
+![](/images/Captura%20de%20pantalla%202022-09-18%20193716.png)
+
+
+### *e) ¿Cuál es la funcionalidad de un “Gestor de Arranque”?* 
+Los gestores de arranque son pequeños programas encargados del booteo 	cuando se tienen varios sistemas operativos instalados , ya que el MBR tipico no es suficiente.
+
+
+### *¿Qué tipos existen?* 
+Existen distintos tipos de gestores de arranque:
+- Los que cargan el primer sector de la particion primaria marcada como booteable.
+- Los que permiten arrancar un sitema operativo cargando su kernel desde el sistema de archivos.
+*¿Dónde se instalan?* 
+Existen dos modos de instalaciones , en el MBR (sustituyendo el MBC por la “primera etapa” del gestor) o en el sector de arranque de la particion raiz o activa.
+*Cite gestores de arranque conocidos.*
+Existen diferentes gestores de arranque , NTDLR(usado en toda la rama de windows NT) , GRUB(la version 2 es la mas usada en las distribuciones GNU/Linux, Lilo , GAG , YaST.
 
 ### *f) ¿Cuáles son los pasos que se suceden desde que se prende una computadora hasta que el Sistema Operativo es cargado (proceso de bootstrap)?*
 
+Los pasos que se suceden desde que se prende una computadora son:
+- La BIOS realiza un testeo general llamo POST.
+- Una vez terminado el POST se mueve a memoria el MBC del MBR del disco maestro primario a memoria y se ejecuta.
+- El MBC contiene la etapa 1 del  gestor de arranque o el bootloader con la 		indicacion de que particion es la activa.
+
+- Si el MBC no contenia un gestor de arranque entonces  , se mueve a memoria el contenido del sector de arranque de la particion activa que contieen el paso sucesivo para el inicio del S.O.
+
+- Si el MBC contenia la primera etapa del gestor de arranque , se lee el sector de arranque para obtener la “segunda etapa” del gestor de arranque , donde se presenta un menu donde el usuario elige el sistema operativo a cargar , es decir le indica al gestor de arranque que bootloader ejecutar.
+
 ### *g) Analice el proceso de arranque en GNU/Linux y describa sus principales pasos.*
+En Linux, el flujo de control durante el arranque es desde el BIOS, al gestor de arranque y al kernel. El núcleo inicia el planificador (para permitir la multitarea) y ejecuta el primer espacio de usuario (es decir, fuera del espacio del núcleo) y el programa de inicialización (que establece el entorno de usuario y permite la interacción del usuario y el inicio de sesión, momento en el que el núcleo se inactiva hasta que sea llamado externamente
+
+La etapa del cargador de arranque no es totalmente necesaria. Determinadas BIOS pueden cargar y pasar el control a Linux sin hacer uso del cargador. Cada proceso de arranque será diferente dependiendo de la arquitectura del procesador y el *BIOS*.
+
+1. El BIOS realiza las tareas de inicio específicas de la plataforma de hardware.
+
+2. Una vez que el hardware  es reconocido y se inicia correctamente, el BIOS carga y ejecuta el código de la partición de arranque del dispositivo de arranque designado, que contiene la fase 1 de un gestor de arranque Linux. La fase 1 carga la fase 2 (la mayor parte del código del gestor de arranque). Algunos cargadores pueden utilizar una fase intermedia (conocida como la fase 1.5) para lograr esto, ya que los modernos discos de gran tamaño no pueden ser totalmente leídos sin código adicional.
+
+3. El gestor de arranque a menudo presenta al usuario un menú de opciones posibles de arranque. A continuación, carga el sistema operativo, que descomprime en la memoria, y establece las funciones del sistema como del hardware esencial y la paginación de memoria, antes de llamar a la función `start_kernel()`.
+
+4. La función `start_kernel()` a continuación realiza la mayor parte de la configuración del sistema interrupciones, el resto de la gestión de memoria, la inicialización del dispositivo, controladores, etc, antes de continuar por separado el proceso inactivo y planificador, y el proceso de Init que se ejecuta en el espacio de usuario.
+
+5. El planificador toma control efectivo de la gestión del sistema, y el núcleo queda dormido (inactivo).
+
+6. El proceso Init ejecuta secuencias de comandos Scripts necesarios para configurar todos los servicios y estructuras que no sean del sistema operativo, a fin de permitir que el entorno de usuario sea creado y pueda presentarse al usuario con una pantalla de inicio de sesión.
+
+En el apagado, *Init* es llamado a cerrar toda las funcionalidades del espacio de usuario de una manera controlada, de nuevo a través de secuencias de comandos, tras lo cual el *Init* termina y el núcleo ejecuta el apagado.
+
 
 ### *h) ¿Cuáles son los pasos que se suceden en el proceso de parada (shutdown) de GNU/Linux?*
+- En primer lugar, notifica el hecho a todos los usuarios conectados (mediantewall) y bloquea el proceso de registro (login).
+
+- Posteriormente invoca a Init en un runlevel 0 (para simplemente detener elsistema), 6 (para reinicializarlo) o incluso 1 (monousuario, para realizar tareas administrativas).
+
+- INIT ejecuta el script correspondiente (leído de/etc/inittab), que sueleencargarse de eliminar todos los procesos de la máquina, notificar el evento enel fichero de log correspondiente, desmontar los sistemas de ficheros queexistan, desactivar el área de swap (intercambio) y, según se haya invocado la orden, detener el sistema o reinicializarlo. La forma habitual de invocar a shutdown es shutdown -r/-h now. Con el parámetro -r hacemos un reboot, y con -h un halt (simplemente detenemos elsistema, sin reinicializar). El parámetro "now" puede ser substituido por una hora o puede indicarse el tiempo que deberá esperar el sistema para proceder al reinicio/parado del sistema. Algún ejemplo sobre el reinicio del sistema sería: shutdown -h/-r 20:00 o shutdown -h/-r +10
 
 ### *i) ¿Es posible tener en una PC GNU/Linux y otro Sistema Operativo instalado? Justifique.*
+Si, es posible tener en una PC GNU/Linux y otro sistema operativo si se tienen instalados los sistemas en distintas particiones y se cuenta con un gestor de arranque como grub para la selección de los distintos sistemas.
 
 ## 9. Archivos:
 ### *a) ¿Cómo se identifican los archivos en GNU/Linux?*
@@ -510,26 +595,26 @@ Existen 2 tipos:
 
 ## 10. Indique qué comando es necesario utilizar para realizar cada una de las siguientes acciones.Investigue su funcionamiento y parámetros más importantes:
 
-### *a) Cree la carpeta ISO2017*
-
+### *a) Cree la carpeta ISO2022*
+- mkdir ISO2022
 ### *b) Acceda a la carpeta (cd)*
-
+- cd ISO2022
 ### *c) Cree dos archivos con los nombres iso2017-1 e iso2017-2 (touch)*
-
+- 
 ### *d) Liste el contenido del directorio actual (ls)*
-
+- ls (ls -a para mostrar "todos los archivos")
 ### *e) Visualizar la ruta donde estoy situado (pwd)*
-
-### *f) Busque todos los archivos en los que su nombre contiene la cadena “iso*” (find)*
-
+- pwd
+### *f) Busque todos los archivos en los que su nombre contiene la cadena “iso*”(find)*
+- find iso*
 ### *g) Informar la cantidad de espacio libre en disco (df)*
-
+- df
 ### *h) Verifique los usuarios conectado al sistema (who)*
-
+- who
 ### *i) Acceder a el archivo iso2017-1 e ingresar Nombre y Apellido*
-
+- nano iso2022-1
 ### *j) Mostrar en pantalla las últimas líneas de un archivo (tail).*
-
+- tail iso2022-1
 ## 11. Investigue su funcionamiento y parámetros más importantes:
 
 ### *a) shutdown*
