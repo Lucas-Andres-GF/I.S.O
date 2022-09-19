@@ -586,21 +586,38 @@ Si, es posible tener en una PC GNU/Linux y otro sistema operativo si se tienen i
 
 ## 9. Archivos:
 ### *a) ¿Cómo se identifican los archivos en GNU/Linux?*
-
+Los archivos se identifican por su nombre, en Linux no hay ningún formato estándar para los nombres de los archivos (No existe el .pdf (ejemplo)), en general, pueden tener cualquier carácter menos "/" y están limitados a 256 caracteres de longitud.
 ### *b) Investigue el funcionamiento de los editores vi y mcedit, y los comandos cat y more.*
+
+Cat: es la abreviatura de concatenar. Esto se refiere al hecho de que cat puede ser utilizado para combinar múltiples archivos en un archivo, también se puede utilizar para crear nuevos archivos y para mostrar el contenido de los archivos existentes.
+
+More: es un comando para ver (pero no modificar) el contenido de un archivo o comando y visualizarlo por páginas. El comando también permite al usuario desplazarse hacia arriba y hacia abajo por la página.
 
 ### *c) Cree un archivo llamado “prueba.exe” en su directorio personal usando el vi. El mismo debe contener su número de alumno y su nombre.*
 
-### *d) Investigue el funcionamiento del comando file. Pruébelo con diferentes archivos. ¿Qué diferencia nota?*
+![](/images/WhatsApp%20Image%202022-09-19%20at%2009.44.08.jpeg)
 
+![](/images/WhatsApp%20Image%202022-09-19%20at%2009.43.07.jpeg)
+
+### *d) Investigue el funcionamiento del comando file. Pruébelo con diferentes archivos. ¿Qué diferencia nota?*
+El comando file es una utilidad que realiza una serie de pruebas (test) para determinar el tipo y formato de un archivo. Más precisamente las pruebas son tres, y la primera que permita alcanzar un resultado hace que el análisis finalice.
+
+Se detallan a continuación dichas pruebas, en el orden en que se llevan a cabo por este comando:
+
+Sistema de archivos: se intenta determinar si el archivo a examinar es un archivo del sistema por medio de la función (system call) stat. Gracias a esta prueba se puede determinar si es un dispositivo, enlace simbólico, una tubería, etc.
+
+Números mágicos: Se intenta determinar el tipo, analizando determinados bytes ubicados en específicas posiciones dentro del archivo. Estos bytes se los denomina números mágicos, y suelen estar al comienzo de la cabecera. La información para realizar dicho análisis figura en el archivo /usr/share/misc/magic.mgc.
+
+Prueba de sintaxis: esta última prueba consiste en determinar que tipo de sintaxis posee un archivo de texto. Esta prueba solo se realiza sobre los archivos que se haya determinado que sean texto plano. Básicamente consiste en buscar la presencia de determinadas palabras claves que permiten identificar la sintaxis usada dentro de dicho archivo.
 ## 10. Indique qué comando es necesario utilizar para realizar cada una de las siguientes acciones.Investigue su funcionamiento y parámetros más importantes:
 
 ### *a) Cree la carpeta ISO2022*
 - mkdir ISO2022
 ### *b) Acceda a la carpeta (cd)*
 - cd ISO2022
-### *c) Cree dos archivos con los nombres iso2017-1 e iso2017-2 (touch)*
-- 
+### *c) Cree dos archivos con los nombres iso2022-1 e iso2022-2 (touch)*
+- touch iso2022-1
+- touch iso2022-2
 ### *d) Liste el contenido del directorio actual (ls)*
 - ls (ls -a para mostrar "todos los archivos")
 ### *e) Visualizar la ruta donde estoy situado (pwd)*
@@ -611,7 +628,7 @@ Si, es posible tener en una PC GNU/Linux y otro sistema operativo si se tienen i
 - df
 ### *h) Verifique los usuarios conectado al sistema (who)*
 - who
-### *i) Acceder a el archivo iso2017-1 e ingresar Nombre y Apellido*
+### *i) Acceder a el archivo iso2022-1 e ingresar Nombre y Apellido*
 - nano iso2022-1
 ### *j) Mostrar en pantalla las últimas líneas de un archivo (tail).*
 - tail iso2022-1
