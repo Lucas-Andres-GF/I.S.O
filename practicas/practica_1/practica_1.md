@@ -340,7 +340,8 @@ El Shell no forma parte del kernel básico del SO; sino que el mismo “dialoga�
 
 ### f) *¿Es posible definir un intérprete de comandos distinto para cada usuario? ¿Desde dónde se define? ¿Cualquier usuario puede realizar dicha tarea?*
 Dentro del archivo /etc/passwd (Accediendo cat /etc/passwd), se puede ver cual es el shell que cada usuario tiene asignada por defect.
-![](/images/WhatsApp%20Image%202022-09-17%20at%2012.11.56.jpeg)
+
+![](/images/Comando%20cat.jpeg)
 
 
 ## 6. Sistema de Archivos (File System):
@@ -527,7 +528,7 @@ El sistema GPT (GUID Partition table) se introduce para solucionar algunas limit
 
 Formato:
 
-![](/images/Captura%20de%20pantalla%202022-09-18%20193716.png)
+![](/images/GPT%20Scheme.png)
 
 
 ### *e) ¿Cuál es la funcionalidad de un “Gestor de Arranque”?* 
@@ -595,9 +596,9 @@ More: es un comando para ver (pero no modificar) el contenido de un archivo o co
 
 ### *c) Cree un archivo llamado “prueba.exe” en su directorio personal usando el vi. El mismo debe contener su número de alumno y su nombre.*
 
-![](/images/WhatsApp%20Image%202022-09-19%20at%2009.44.08.jpeg)
+![](/images/comando%20vi%20.jpeg)
 
-![](/images/WhatsApp%20Image%202022-09-19%20at%2009.43.07.jpeg)
+![](/images/Vi%20prueba.exe.jpeg)
 
 ### *d) Investigue el funcionamiento del comando file. Pruébelo con diferentes archivos. ¿Qué diferencia nota?*
 El comando file es una utilidad que realiza una serie de pruebas (test) para determinar el tipo y formato de un archivo. Más precisamente las pruebas son tres, y la primera que permita alcanzar un resultado hace que el análisis finalice.
