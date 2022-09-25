@@ -695,30 +695,77 @@ Prueba de sintaxis: esta última prueba consiste en determinar que tipo de sinta
 - -o Para obtener la información del nombre de la distribución de Linux que estamos utilizando.
 
 ### *f) dmesg*
+- (diagnostic message, mensajes de diagnóstico) lista el buffer de mensajes del núcleo. Este buffer contiene una gran variedad de mensajes importantes generados durante el arranque del sistema y durante la depuración de aplicaciones.
+- podemos obtener (usando nuestra terminal) la información de arranque nuestro sistema entre otros datos, mensajes del nucleo (kernel) y utilizar esta información para detectar posibles errores de nuestro sistema y del Hardware.
 
 ### *g) lspci*
-
+- imprime listas con información detallada sobre todos los Buses y dispositivos del sistema. Se basa en una biblioteca portátil, libpci que ofrece acceso al espacio de configuración PCI en varios sistemas operativos.
+- -t Para mostrar un diagrama que incluye todas las ranuras PCI, puentes, dispositivos y sus conexiones
+- lspci (-v,-vv,-vvv) Para ver tres diferentes niveles de detalle. La salida será muy extensa en todos los casos:
+- -n Para mostrar los códigos de dispositivo como números en vez de la lista de identidades PCI.
+- | grep Ethernet Si queremos encontrar un componente determinado, por ejemplo la tarjeta de red, usamos la siguiente línea
 ### *h) at*
+- sirve para programar tareas que no se van a repetir en el tiempo, si no únicamente se realizarán en la fecha y hora especificada y después se olvidarán. para ello en nuestra consola escribimos el comando y la hora a la que queremos que se ejecute nuestro comando.
+
+Ejemplo: apagar a cierta hora. 
+- at 2:01 pm
+- at> shutdown 0
+- CTRL + D para finalizar la lista de tareas.
 
 ### *i) netstat*
+- Muestra las conexiones de red (entrantes y salientes), tablas de enrutamiento y una serie de estadísticas de interfaz de red.
+![](/images/netstat-h.jpeg)
 
 ### *j) mount*
+- Se utiliza para montar dispositivos y particiones para su uso por el sistema operativo. Montar es hacer que el sistema operativo proyecte el contenido de ese dispositivo o partición en un enlace lógico (un directorio).
+![](/images/mount-h1.jpeg)
+![](/images/mount-h2.jpeg)
+![](/images/mount-h3.jpeg)
 
 ### *k) umount*
-
+- Se utiliza para desmontar dispositivos y particiones para su uso por el sistema operativo
+- Desmontar todo.- En vez de desmontar las particiones que se listan en /etc/fstab, con la opción -a hacemos que el sistema intente desmontar todas las particiones listadas en /etc/mtab, que es donde el fichero contiene la información sobre los sistemas de ficheros montados. Un sistema que se ejecuta con normalidad, probablemente esta operación no tenga un éxito total, debido a que no podremos desmontar algunos ficheros clave, tal como, la partición raíz.
+- Forzar el desmontado.- Con la opción -f le decimos a Linux que fuerce una operación de desmontado que, en condiciones normales, fallaría Esto a veces es útil cuando se desmontan NFS compartidos por servidores que han quedado fuera de alcance.
+- Modo sólo de lectura.- La opción -r indica a umount que, si no puede desmontar el sistema de ficheros, debe intentar volver a montarlo en modo de sólo lectura.
+- Desmontar particiones de un tipo específico de sistema de archivos.- Con la opción -t tipofs el sistema desmonta sólo las particiones del tipo especificado en tipofs. Podemos listar varios tipos de sistema de ficheros separándolos por comas.
+- Dispositivo y punto de montado.- Sólo podemos especificar el dispositivo o el puntodemontado.
 ### *l) head*
+- Se utiliza para mostrar información, si lo usamos sin parámetros, de las 10 primeras líneas de un archivo en la salida estándar. También se puede utilizar para mostrar información de varios ficheros a la vez.
+- -n (20 <- Ej) [nombre del archivo] donde indicamos el número de líneas que queremos que nos muestre.
+
+- -c (200 <- Ej) [nombre del archivo] que imprime los primeros bytes indicados.
 
 ### *m) losetup*
+- Se usa para configurar un dispositivo de bucle.
+- -d Retire el dispositivo.
+- -e <método de cifrado> Inicia la codificación de cifrado.
+- -o <número de traducciones> Establece el número de traducciones de datos.
 
 ### *n) write*
-
+- Permite comunicarse con otro usuario, copiando líneas de su terminal a la de él.
+- write - envía un mensaje a otro usuario ( write usuario [nombre-tty] )    
+- Message from yourname@yourhost on yourtty at hh:mm ...
+- El protocolo tradicional para escribir a alguien es que la cadena '-o', bien al  final  de una  línea o en una línea sola, significa que es el turno de hablar de la otra persona. La 'o' es por 'over'; o sea, 'cambio'. La cadena 'oo' (por 'over and out'; o sea,  'cambio  y corto') significa que la persona cree que la conversación ha terminado.
 ### *ñ) mkfs*
+- se  utiliza para dar formato a un dispositivo de almacenamiento de bloque con un determinado sistema de archivos.
 
 ### *o) fdisk (con cuidado)*
+- Es un software que está disponible para varios sistemas operativos, el cual permite dividir en forma lógica un disco duro, siendo denominado este nuevo espacio como partición. La descripción de las particiones se guarda en la tabla de particiones que se localiza en el sector 0 de cada disco.
+- -d: borra una partición.
+- -l: lista los tipos de partición.
+- -m: muestra las opciones de menú.
+- -n: crea una nueva partición. 
+- -p: muestra las particiones actuales. 
+- -q: sale de fdisk sin guardar las modificaciones.
+- -t: cambia el tipo de partición. 
+- -v: analiza la tabla de partición. 
+- -w: guarda los cambios y sale de fdisk.
 
 ## 12. Investigue su funcionamiento y parámetros más importantes:
 
 ### *a) Indique en qué directorios se almacenan los comandos mencionados en el ejercicio*
+- Los comandos se almacenan en /sbin, /usr/sbin y /usr/local/sbin
+
 
 
 
