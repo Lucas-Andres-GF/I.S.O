@@ -614,30 +614,61 @@ Prueba de sintaxis: esta última prueba consiste en determinar que tipo de sinta
 
 ### *a) Cree la carpeta ISO2022*
 - mkdir ISO2022
+- (make subdirectory) Crea un nuevo subdirectorio o carpeta del sistema de archivos.
 ### *b) Acceda a la carpeta (cd)*
 - cd ISO2022
+- Significa change directory (o cambio de directorio). Se invoca especificando la carpeta a la que te vas a mover. Puedes especificar un nombre de carpeta o una ruta de acceso completa. 
 ### *c) Cree dos archivos con los nombres iso2022-1 e iso2022-2 (touch)*
 - touch iso2022-1
 - touch iso2022-2
+- Crear un archivo vacío.
+
 ### *d) Liste el contenido del directorio actual (ls)*
 - ls (ls -a para mostrar "todos los archivos")
+- Enlistar todos los archivos que contiene la carpeta.
+
 ### *e) Visualizar la ruta donde estoy situado (pwd)*
 - pwd
+- (print working directory) Imprime la ruta de la carpeta actual.
 ### *f) Busque todos los archivos en los que su nombre contiene la cadena “iso*”(find)*
 - find iso*
+- puede utilizarse para encontrar archivos o carpetas que coincidan con un patrón de búsqueda determinado.
 ### *g) Informar la cantidad de espacio libre en disco (df)*
 - df
+- Se usa para obtener información sobre el uso del disco.
 ### *h) Verifique los usuarios conectado al sistema (who)*
 - who
+- Para imprimir el nombre de usuario que está conectado a la sesión de la terminal:
 ### *i) Acceder a el archivo iso2022-1 e ingresar Nombre y Apellido*
 - nano iso2022-1
+- Es un editor amigable para principiantes.
 ### *j) Mostrar en pantalla las últimas líneas de un archivo (tail).*
 - tail iso2022-1
+- Abre el archivo al final, y observa los cambios del mismo.
+
 ## 11. Investigue su funcionamiento y parámetros más importantes:
 
 ### *a) shutdown*
-
+- Se utiliza para apagar o reiniciar Linux desde la terminal.
+- -h Apagado predeterminado de Linux.
+- -h 0 ó now Linux se apaga inmediatamente.
+- -h 20 Linux se apaga al cabo de 20 minutos.
+- -h 17:30  Apagar Linux a una hora determinada (o sin la h).
+- -r 0 ó now Linux se reinicia inmediatamente.
+- -r Reiniciar Linux de forma estándar.
+- -r 20 Reiniciar Linux al cabo de 20 minutos.
+- -r 17:30  Reiniciar Linux a una hora determinada.
+- -P Ordena específicamente que el sistema se apague y que la fuente de alimentación principal se desconecte.
+- -c Puede cancelar un apagado o un reinicio pendiente.
 ### *b) reboot*
+- permite reiniciar el sistema. 
+- -n No sincronizar antes de reiniciar. Tenga en cuenta que los controladores del núcleo y de almacenamiento pueden todavía sincronizar.
+- -w en realidad no reinicia, pero sólo escriben el registro wtmp (en el directorio / var / log / wtmp) .
+- -d No escribe el registro wtmp. El indicador-n implica - d.
+- -f Fuerza a reboot , no llama a shutdown.
+- - Apaga todas las interfaces de red justo antes de detener o reiniciar el sistema.
+- -h Pone todos los discos duros en el sistema en modo de espera antes de detenerse o de apagarse.
+- -p Cuando apagamos el sistema, se desconecta la alimentación. Este es el valor por defecto cuando halt es llamado como poweroff.
 
 ### *c) halt*
 
