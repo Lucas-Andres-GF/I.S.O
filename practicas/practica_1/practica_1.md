@@ -666,17 +666,35 @@ Prueba de sintaxis: esta última prueba consiste en determinar que tipo de sinta
 - -w en realidad no reinicia, pero sólo escriben el registro wtmp (en el directorio / var / log / wtmp) .
 - -d No escribe el registro wtmp. El indicador-n implica - d.
 - -f Fuerza a reboot , no llama a shutdown.
-- - Apaga todas las interfaces de red justo antes de detener o reiniciar el sistema.
 - -h Pone todos los discos duros en el sistema en modo de espera antes de detenerse o de apagarse.
 - -p Cuando apagamos el sistema, se desconecta la alimentación. Este es el valor por defecto cuando halt es llamado como poweroff.
 
+
 ### *c) halt*
+- nos permite apagar el sistema, pero no nos permiten especificar opciones adicionales como mensajes y temporizadores, que si vimos en shutdown.
+- -n No sincronizar antes de detener. Tenga en cuenta que los controladores del núcleo y de almacenamiento pueden todavía sincronizar.
+- - w en realidad no para o reinicia, pero sólo escriben el registro wtmp (en el directorio / var / log / wtmp ) .
+- -d No escriba el registro wtmp . El indicador-n implica - d.
+- -f Fuerza halt, no llama a shutdown.
+- -i Apaga todas las interfaces de red justo antes de detener o reiniciar el sistema.
+- -h Ponga todos los discos duros en el sistema en modo de espera antes de detenerse o de apagarse .
+- -p Cuando apagamos el sistema, desconecte la alimentación. Este es el valor por defecto cuando halt es llamado como poweroff .
 
 ### *d) locate*
-
+- Es una herramienta del tipo findutils para sistemas operativos GNU/Linux.Realiza búsquedas de forma fácil y muy rápida, de elementos (archivos y directorios) basado en patrones de nombres.
+- No todas las distribuciones cuentan con esta utilidad, la misma se instala con el comando sudo apt install locate ó sudo apt install mlocate. 
+-Se recomienda hacer sudo updatedb para actualizar la base de datos de la herramienta.
+- -c para saber cuántas veces coincide una palabra clave de búsqueda en la base de datos.
 ### *e) uname*
+- Sirve para imprimir información del sistema linux. 
+- -a  nos da toda la información disponible. 
+- -r Si deseamos extraer la información de la versión del kernel.
+- -v Si deseamos extraer la fecha de cuando la versión del kernel fue liberada-
+- -m Para conocer la arquitectura de nuestro sistema operativo, ya sea 36 o 64 bytes.
+- -p Para mostrar la información del procesador del equipo en el cual se ejecuta nuestro sistema operativo linux.
+- -o Para obtener la información del nombre de la distribución de Linux que estamos utilizando.
 
-### *f) gmesg*
+### *f) dmesg*
 
 ### *g) lspci*
 
