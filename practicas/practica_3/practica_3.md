@@ -77,6 +77,7 @@ $HOME almacena la carpeta personal del usuario.
 5.¿Cual es la funcionalidad de comando exit? ¿Qué valores recibe como parámetro y cual es
 su significado?
 
+
 6.El comando expr permite la evaluación de expresiones. Su sintaxis es: expr arg1 op arg2,
 donde arg1 y arg2 representan argumentos y op la operación de la expresión. Investigar
 que tipo de operaciones se pueden utilizar.
@@ -105,6 +106,7 @@ arreglos? ¿Cómo?
 parámetros de una función a la otra?
 
 12.Evaluación de expresiones:
+
 (a) Realizar un script que le solicite al usuario 2 números, los lea de la entrada Standard
 e imprima la multiplicación, suma, resta y cual es el mayor de los números leídos.
 
