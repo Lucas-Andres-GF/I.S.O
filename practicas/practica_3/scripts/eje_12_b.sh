@@ -1,3 +1,5 @@
+#Modificar el script creado en el inciso anterior para que los números sean recibidos
+#como parámetros. El script debe controlar que los dos parámetros sean enviados.
 #!/bin/bash
 function mayor (){
 	if [ $1 -gt $2 ]

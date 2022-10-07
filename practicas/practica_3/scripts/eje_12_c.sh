@@ -1,3 +1,5 @@
+#Realizar una calculadora que ejecute las 4 operaciones básicas: +, - ,*, %. Esta calcu-
+#ladora debe funcionar recibiendo la operación y los números como parámetros
 #!/bin/bash
 function aplicarFuncion (){	
 	if [ "$2" == "+" ] ||  [ "$2" == "-" ] || [ "$2" == "%" ]

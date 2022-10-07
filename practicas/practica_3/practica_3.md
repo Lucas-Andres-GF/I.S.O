@@ -152,6 +152,12 @@ Ejemplo:
 siendo posible indicar cual es el delimitador de las mismas. Investigue los parámetros que
 puede recibir este comando y cite ejemplos de uso.
 
+Opciones de corte
+- -f : Extraiga especificando un campo. El comando Cortar usa ‘TAB’ como delimitador de campo predeterminado.
+- -d : ‘Tab’ es el delimitador predeterminado y con esta opción puede usar un delimitador específico.
+- -b : Para extraer especificando un byte. También se puede especificar el rango de bytes.
+- -c : Cortar por carácter. Puede ser una lista de números separados por comas o un rango de números separados por un guión (-).
+
 16.Realizar un script que reciba como parámetro una extensión y haga un reporte con 2
 columnas, el nombre de usuario y la cantidad de archivos que posee con esa extensión. Se
 debe guardar el resultado en un archivo llamado reporte.txt
